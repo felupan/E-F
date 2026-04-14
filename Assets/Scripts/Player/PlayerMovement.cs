@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using Managers;
 using NUnit.Framework;
 using UnityEngine;
@@ -36,7 +37,6 @@ namespace Player
         {
             base.Awake();
             PlayerInput = GetComponent<PlayerInput>();
-            //main.Rb.gravityScale = playerSettings.gravityScale;
         }
 
         private void OnEnable()
@@ -134,6 +134,7 @@ namespace Player
             if (IsGround && inputEnabled)
             {
                 main.Rb.AddForce(Vector2.up * playerSettings.jumpForce, ForceMode2D.Impulse);
+                transform.DOPunchScale(new Vector3(-0.8f, 1f, 1f), 0.2f, 2, 0.5f);
             }
         }
 

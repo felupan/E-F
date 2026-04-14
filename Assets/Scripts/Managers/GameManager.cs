@@ -6,6 +6,8 @@ namespace Managers
 {
     public class GameManager : MonoBehaviour
     {
+        [field:SerializeField] public float Gravity { get; private set; }
+        
         public PlayerMain player1 { get; private set; }
         public PlayerMain player2 { get; private set; }
         
@@ -22,6 +24,8 @@ namespace Managers
             {
                 Destroy(gameObject);
             }
+
+            Physics2D.gravity = new Vector2(0, -Gravity);
         }
 
         private void Start()
