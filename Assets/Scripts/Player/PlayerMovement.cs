@@ -98,6 +98,7 @@ namespace Player
             OnAnchorChanged?.Invoke(main.playerType, isAnchored);
             main.Rb.bodyType = RigidbodyType2D.Kinematic;
             main.Rb.linearVelocity = Vector2.zero;
+            AudioManager.Instance.PlaySfx(playerSettings.anchorSound, 0.2f);
         }
 
         private void DisableAnchor(InputAction.CallbackContext ctx)
@@ -106,17 +107,20 @@ namespace Player
             main.Anim.SetBool(IsAnchored, isAnchored);
             OnAnchorChanged?.Invoke(main.playerType, isAnchored);
             main.Rb.bodyType = RigidbodyType2D.Dynamic;
+            AudioManager.Instance.StopSfx();
         }
         
         private void OnRetractInput(InputAction.CallbackContext ctx)
         {
             if (!inputEnabled || !IsGround) return;
             OnRetractRope?.Invoke(main.playerType);
+            AudioManager.Instance.PlaySfx(playerSettings.retractSound);
         }
 
         private void OnStopRetractInput(InputAction.CallbackContext ctx)
         {
             OnStopRetractRope?.Invoke(main.playerType);
+            AudioManager.Instance.StopSfx();
         }
 
         public void SetInputEnabled(bool state)
@@ -131,10 +135,11 @@ namespace Player
 
         private void OnJump(InputAction.CallbackContext ctx)
         {
-            if (IsGround && inputEnabled)
+            if (IsGround && inputEnabled && !isAnchored)
             {
                 main.Rb.AddForce(Vector2.up * playerSettings.jumpForce, ForceMode2D.Impulse);
                 transform.DOPunchScale(new Vector3(-0.8f, 1f, 1f), 0.2f, 2, 0.5f);
+                AudioManager.Instance.PlaySfx(playerSettings.jumpSound, 0.2f);
             }
         }
 

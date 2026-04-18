@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSettings
   moveForce: 50
   jumpForce: 30
-  gravityScale: 4
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
   detectionRadius: 0.2
+  jumpSound: {fileID: 8300000, guid: 74f21977e1d81d343afc765658e26e03, type: 3}
+  anchorSound: {fileID: 8300000, guid: 08997b5c81e8e73439022f5b1e763368, type: 3}
+  retractSound: {fileID: 8300000, guid: 34fdfb13d7f79c44fafe47e4fe6514b9, type: 3}

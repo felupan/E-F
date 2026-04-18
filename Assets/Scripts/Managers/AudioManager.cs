@@ -7,7 +7,7 @@ namespace Managers
         [SerializeField] private AudioSource sfxSource;
         [SerializeField] private AudioSource musicSource;
     
-        public AudioManager Instance { get; private set; }
+        public static AudioManager Instance { get; private set; }
 
         private void Awake()
         {
@@ -31,6 +31,11 @@ namespace Managers
         {
             musicSource.clip = clip;
             musicSource.Play();
+        }
+
+        public void StopSfx()
+        {
+            sfxSource.Stop();
         }
     }
 }

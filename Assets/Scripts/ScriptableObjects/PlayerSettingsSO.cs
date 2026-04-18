@@ -11,4 +11,10 @@ public class PlayerSettings : ScriptableObject
     [Header("Ground Check")]
     public LayerMask whatIsGround;
     public float detectionRadius;
+    
+    [Header("Sounds")]
+    public AudioClip jumpSound;
+    public AudioClip anchorSound;
+    public AudioClip retractSound;
+    
 }

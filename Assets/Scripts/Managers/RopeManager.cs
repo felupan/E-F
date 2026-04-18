@@ -181,13 +181,14 @@ namespace Managers
             Vector3 direction = (player2.transform.position - player1.transform.position).normalized; 
             Vector3 force = direction * (error * ropeForce);
             
-            maxForceY = ropeForce * 0.8f;
+            maxForceY = ropeForce * 1.5f;
             
             if (direction.y < 0)
             {
                 maxForceY = -maxForceY;
             }
             
+            // pendulo (spoiler: no pendulea, super forzado)
             if (player1Anchored)
             {
                 maxForceY = Mathf.Min(maxForceY, force.y);
