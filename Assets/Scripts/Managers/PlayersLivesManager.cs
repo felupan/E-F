@@ -1,4 +1,7 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using Player;
 using UnityEngine;
 
 namespace Managers
@@ -6,11 +9,15 @@ namespace Managers
     public class PlayersLivesManager : MonoBehaviour
     {
         //los jugadores comparten vidas, jugador recibe daño, lanza evento, este script
-        //recibe el evento y resta vidas
+        //recibe el evento y resta vidas, manda evento para actualizar UI
+        
         [field:SerializeField] public int Lives { get; private set; }
         public int MaxLives { get; private set; }
-        public event Action OnGameEnd;
-        public event Action<int> OnLivesChange;
+        public static event Action OnGameEnd;
+        public static event Action<int> OnLivesChange;
+        
+        private bool _hitCooldown;
+        private float _cooldownTime = 3f;
         
         public static PlayersLivesManager Instance { get; private set; }
 
@@ -30,24 +37,31 @@ namespace Managers
         private void OnEnable()
         {
             MaxLives = Lives;
-            GameManager.Instance.player1.Health.OnPlayerDamaged += OnPlayerDamage;
-            GameManager.Instance.player2.Health.OnPlayerDamaged += OnPlayerDamage;
+            PlayerHealth.OnPlayerDamaged += OnPlayerDamage;
         }
 
         private void OnDisable()
         {
-            GameManager.Instance.player1.Health.OnPlayerDamaged -= OnPlayerDamage;
-            GameManager.Instance.player2.Health.OnPlayerDamaged -= OnPlayerDamage;
+            PlayerHealth.OnPlayerDamaged -= OnPlayerDamage;
         }
 
         private void OnPlayerDamage()
         {
+            if (_hitCooldown) return;
             Lives--;
             OnLivesChange?.Invoke(Lives);
             if (Lives <= 0)
             {
                 OnGameEnd?.Invoke();
             }
+            _hitCooldown = true;
+            StartCoroutine(HitCooldown(_cooldownTime));
+        }
+        
+        private IEnumerator HitCooldown(float wait)
+        {
+            yield return new WaitForSeconds(wait);
+            _hitCooldown = false;
         }
     }
 }

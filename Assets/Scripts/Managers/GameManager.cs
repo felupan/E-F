@@ -1,6 +1,7 @@
 using System;
 using Player;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Managers
 {
@@ -26,6 +27,21 @@ namespace Managers
             }
 
             Physics2D.gravity = new Vector2(0, -Gravity);
+        }
+
+        private void OnEnable()
+        {
+            PlayersLivesManager.OnGameEnd += GameOver;
+        }
+
+        private void GameOver()
+        {
+            SceneManager.LoadScene("GameOver");
+        }
+
+        private void OnDisable()
+        {
+            PlayersLivesManager.OnGameEnd -= GameOver;
         }
 
         private void Start()
