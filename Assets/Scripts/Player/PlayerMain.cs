@@ -1,4 +1,5 @@
-﻿using Managers;
+﻿using System;
+using Managers;
 using UnityEngine;
 
 namespace Player
@@ -23,6 +24,10 @@ namespace Player
             Anim = GetComponent<Animator>();
             Movement = GetComponent<PlayerMovement>();
             Health = GetComponent<PlayerHealth>();
+        }
+
+        private void Start()
+        {
             GameManager.Instance.RegisterPlayer(this, playerType);
         }
     }
