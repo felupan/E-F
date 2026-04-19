@@ -12,11 +12,13 @@ namespace MainMenu
     {
         [SerializeField] private Image fadeOut;
         [SerializeField] private AudioClip buttonSelected;
+        [SerializeField] private AudioClip music;
 
         private void Start()
         {
             fadeOut.enabled = true;
             StartCoroutine(FadeIn());
+            AudioManager.Instance.PlayMusic(music, 0.4f);
         }
 
         public void OnStartButton()

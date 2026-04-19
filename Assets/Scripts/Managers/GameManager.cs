@@ -43,7 +43,6 @@ namespace Managers
 
         private void Start()
         {
-            Physics2D.IgnoreCollision(player1.GetComponent<Collider2D>(), player2.GetComponent<Collider2D>());
             AudioManager.Instance.PlayMusic(gameMusic, 0.2f);
         }
 
@@ -56,7 +55,14 @@ namespace Managers
                 default:
                     throw new ArgumentOutOfRangeException(nameof(playerType), playerType, null);
             }
+
+            if (player1 != null & player2 != null)
+            {
+                Physics2D.IgnoreCollision(player1.GetComponent<Collider2D>(), player2.GetComponent<Collider2D>());
+            }
         }
+        
+        
         
         private void GameOver()
         {

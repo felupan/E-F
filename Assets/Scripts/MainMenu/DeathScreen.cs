@@ -27,6 +27,7 @@ namespace MainMenu
             fadeOut.color = c;
             fadeOut.enabled = true;
             fadeOut.DOFade(1f, 3).WaitForCompletion();
+            AudioManager.Instance.StopMusic();
             SceneManager.LoadScene("Level1");
         }
         

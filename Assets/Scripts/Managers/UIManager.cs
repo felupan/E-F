@@ -17,7 +17,6 @@ namespace Managers
             if (Instance == null)
             {
                 Instance = this;
-                DontDestroyOnLoad(gameObject);
             }
             else
             {
@@ -28,11 +27,13 @@ namespace Managers
         private void OnEnable()
         {
             PlayersLivesManager.OnLivesChange += UpdateLivesUI;
+            PlayersLivesManager.OnGameEnd += ResetLives;
         }
 
         private void OnDisable()
         {
             PlayersLivesManager.OnLivesChange -= UpdateLivesUI;
+            PlayersLivesManager.OnGameEnd -= ResetLives;
         }
 
         private void Start()
@@ -46,6 +47,14 @@ namespace Managers
             for (int i = 0; i < lifeSprites.Length; i++)
             {
                 lifeSprites[i].color = i < lives ? Color.white : Color.black;
+            }
+        }
+        
+        private void ResetLives()
+        {
+            foreach (var t in lifeSprites)
+            {
+                t.color = Color.white;
             }
         }
 

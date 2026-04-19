@@ -318,6 +318,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MainMenu.MainMenuScript
   fadeOut: {fileID: 1087458053}
   buttonSelected: {fileID: 8300000, guid: 5bb6d7c3c5229574aac995d6321a79c2, type: 3}
+  music: {fileID: 8300000, guid: 3f290c632a4a3344bb985efb0e75c280, type: 3}
 --- !u!1 &738867448
 GameObject:
   m_ObjectHideFlags: 0

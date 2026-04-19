@@ -36,6 +36,7 @@ namespace Managers
         
         private LineRenderer lineRenderer;
         private List<RopePoint> ropePoints = new List<RopePoint>();
+        private bool _initialized = false;
 
 
         private void Awake()
@@ -59,16 +60,15 @@ namespace Managers
 
         private void Start()
         {
-            player1 = GameManager.Instance.player1;
-            player2 = GameManager.Instance.player2;
-            Init();
+            StartCoroutine(WaitForPlayersInit());
         }
 
         private void FixedUpdate()
         {
+            if (!_initialized) return;
             UpdatePoints();
             for (int i = 0; i < 50; i++)
-            {
+            { 
                 ApplyConstrains();
             }
             ApplyPlayerForces();
@@ -76,13 +76,14 @@ namespace Managers
 
         private void Update()
         {
+            if (!_initialized) return;
             Render();
         }
 
         private void Init()
         {
             lineRenderer.positionCount = numberOfSegments;
-        
+            
             for (int i = 0; i < numberOfSegments; i++)
             {
                 RopePoint ropePoint;
@@ -95,6 +96,19 @@ namespace Managers
             
                 ropePoints.Add(ropePoint);
             }
+
+            _initialized = true;
+        }
+
+        private IEnumerator WaitForPlayersInit()
+        {
+            while (player1 == null || player2 == null)
+            {
+                player1 = GameManager.Instance.player1;
+                player2 = GameManager.Instance.player2;
+                yield return null;
+            }
+            Init();
         }
 
         private void UpdatePoints()
