@@ -11,6 +11,7 @@ namespace Player
             PlayerTwo
         }
         [field: SerializeField] public PlayerMain.PlayerType playerType { get; private set; }
+        [field:SerializeField] public PlayerSounds playerSounds { get; private set; }
         public Rigidbody2D Rb { get; private set; }
         public Animator Anim { get; private set; }
         public PlayerMovement Movement { get; private set; }

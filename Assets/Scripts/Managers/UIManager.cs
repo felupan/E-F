@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,7 @@ namespace Managers
     public class UIManager : MonoBehaviour
     {
         [SerializeField] private Image[] lifeSprites;
+        [SerializeField] private Image fadeIn;
         
         public static UIManager Instance { get; private set; }
 
@@ -35,16 +37,25 @@ namespace Managers
 
         private void Start()
         {
+            FadeIn();
             UpdateLivesUI(PlayersLivesManager.Instance.Lives);
         }
 
         private void UpdateLivesUI(int lives)
         {
-            Debug.Log($"Me he updateado las vidas perro");
             for (int i = 0; i < lifeSprites.Length; i++)
             {
                 lifeSprites[i].color = i < lives ? Color.white : Color.black;
             }
+        }
+
+        private void FadeIn()
+        {
+            Color c;
+            c = fadeIn.color;
+            c.a = 1f;
+            fadeIn.color = c;
+            fadeIn.DOFade(0f, 2f);
         }
     }
 }

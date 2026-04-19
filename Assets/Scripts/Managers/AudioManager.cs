@@ -37,5 +37,10 @@ namespace Managers
         {
             sfxSource.Stop();
         }
+
+        public void StopMusic()
+        {
+            musicSource.Stop();
+        }
     }
 }

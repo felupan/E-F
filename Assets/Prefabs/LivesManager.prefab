@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecb21dfd96d3f61428272e20fa823424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Managers.PlayersLivesManager
-  <Lives>k__BackingField: 0
+  <Lives>k__BackingField: 3

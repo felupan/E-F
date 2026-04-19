@@ -44,4 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c1577b4bd2f9e54391af2c0f8ded653, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Managers.GameManager
-  <Gravity>k__BackingField: 4
+  gameMusic: {fileID: 8300000, guid: f83cb284050afb749830cee1cf4e1577, type: 3}
+  <Gravity>k__BackingField: 10

@@ -40,9 +40,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 667376784781249955}
+  - component: {fileID: 8646553020354806159}
   - component: {fileID: 4655658462538331219}
   - component: {fileID: 5569311909785533751}
   - component: {fileID: 4506376004762996103}
+  - component: {fileID: 1475403151925268724}
   - component: {fileID: 2494829718499539980}
   - component: {fileID: 6544237445197574560}
   - component: {fileID: 5717967557816035337}
@@ -70,6 +72,18 @@ Transform:
   - {fileID: 8010039427873121065}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8646553020354806159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7476171331372096061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c128753def54b94ab41305074a90815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerFinishPoint
 --- !u!114 &4655658462538331219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,6 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DefaultNamespace.PlayerMain
   <playerType>k__BackingField: 0
+  <playerSounds>k__BackingField: {fileID: 11400000, guid: b631e119c74fc4e49a082d7213b6dc03, type: 2}
 --- !u!114 &5569311909785533751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,6 +124,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   playerSettings: {fileID: 11400000, guid: c1fb20f1f18165541bcb90ef3f635d4a, type: 2}
   feet: {fileID: 8010039427873121065}
+--- !u!114 &1475403151925268724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7476171331372096061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 105192e94c5740caaa3dbdc60b00599f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerHealth
 --- !u!212 &2494829718499539980
 SpriteRenderer:
   serializedVersion: 2

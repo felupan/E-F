@@ -12,7 +12,6 @@ namespace Managers
         //recibe el evento y resta vidas, manda evento para actualizar UI
         
         [field:SerializeField] public int Lives { get; private set; }
-        public int MaxLives { get; private set; }
         public static event Action OnGameEnd;
         public static event Action<int> OnLivesChange;
         
@@ -36,7 +35,6 @@ namespace Managers
 
         private void OnEnable()
         {
-            MaxLives = Lives;
             PlayerHealth.OnPlayerDamaged += OnPlayerDamage;
         }
 
@@ -50,6 +48,7 @@ namespace Managers
             if (_hitCooldown) return;
             Lives--;
             OnLivesChange?.Invoke(Lives);
+            
             if (Lives <= 0)
             {
                 OnGameEnd?.Invoke();

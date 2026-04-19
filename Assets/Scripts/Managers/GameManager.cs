@@ -1,5 +1,6 @@
 using System;
 using Player;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,6 +8,7 @@ namespace Managers
 {
     public class GameManager : MonoBehaviour
     {
+        [SerializeField] private AudioClip gameMusic;
         [field:SerializeField] public float Gravity { get; private set; }
         
         public PlayerMain player1 { get; private set; }
@@ -34,11 +36,6 @@ namespace Managers
             PlayersLivesManager.OnGameEnd += GameOver;
         }
 
-        private void GameOver()
-        {
-            SceneManager.LoadScene("GameOver");
-        }
-
         private void OnDisable()
         {
             PlayersLivesManager.OnGameEnd -= GameOver;
@@ -47,6 +44,7 @@ namespace Managers
         private void Start()
         {
             Physics2D.IgnoreCollision(player1.GetComponent<Collider2D>(), player2.GetComponent<Collider2D>());
+            AudioManager.Instance.PlayMusic(gameMusic, 0.2f);
         }
 
         public void RegisterPlayer(PlayerMain player, PlayerMain.PlayerType playerType)
@@ -58,6 +56,11 @@ namespace Managers
                 default:
                     throw new ArgumentOutOfRangeException(nameof(playerType), playerType, null);
             }
+        }
+        
+        private void GameOver()
+        {
+            SceneManager.LoadScene("GameOver");
         }
     }
 }
